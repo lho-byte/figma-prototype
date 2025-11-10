@@ -5,10 +5,12 @@ iOS 26 Liquid Glass Segmented Control built with HTML and Tailwind CSS.
 ## Features
 
 - ✅ iOS 26 Liquid Glass Effect on selected state
+- ✅ **Dark Mode Support** - Toggle between light and dark themes
 - ✅ Frosted backdrop blur with 30px blur and 200% saturation
 - ✅ Smooth transitions and animations
 - ✅ Interactive toggle functionality
 - ✅ Fully responsive design
+- ✅ Persistent theme preference (saved to localStorage)
 - ✅ Built with Tailwind CSS via CDN (no build step required)
 
 ## Design Details
@@ -19,6 +21,12 @@ The segmented control features:
 - **Gradient overlays** - Subtle lighting effects
 - **High contrast** - Clear distinction between selected and unselected states
 - **Text opacity** - 100% opacity for selected, 60% for unselected segments
+
+### Dark Mode
+- **Adaptive glass effect** - Darker glass appearance with adjusted shadows and highlights
+- **Seamless transition** - Smooth 300ms color transitions between modes
+- **Toggle button** - Fixed position toggle in top-right corner with sun/moon icons
+- **Persistent preference** - Your theme choice is saved and remembered
 
 ## How to Use
 

@@ -6,7 +6,7 @@
     <title>Segmented Control</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* iOS 26 Liquid Glass Effect */
+        /* iOS 26 Liquid Glass Effect - Light Mode */
         .glass-effect {
             background: linear-gradient(135deg, 
                 rgba(255, 255, 255, 1) 0%, 
@@ -37,55 +37,148 @@
             );
             pointer-events: none;
         }
+
+        /* iOS 26 Liquid Glass Effect - Dark Mode */
+        .dark .glass-effect {
+            background: linear-gradient(135deg, 
+                rgba(60, 60, 60, 0.95) 0%, 
+                rgba(45, 45, 45, 0.9) 100%);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            box-shadow: 
+                0 8px 32px 0 rgba(0, 0, 0, 0.6),
+                0 2px 8px 0 rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+                inset 0 -1px 0 0 rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
         
+        .dark .glass-effect::before {
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.03) 50%,
+                rgba(0, 0, 0, 0.2) 100%
+            );
+        }
+
+        /* Mode toggle button */
+        .mode-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.75rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .mode-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .dark .mode-toggle {
+            background: rgba(60, 60, 60, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Smooth transitions */
+        body {
+            transition: background-color 0.3s ease;
+        }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-8">
-    <!-- Segmented Control -->
-    <div class="border border-white/30 border-solid flex gap-[2px] items-center justify-center p-[3px] rounded-[12px] bg-white/20 backdrop-blur-md inline-flex shadow-xl">
-        <!-- Last week - Selected -->
-        <button 
-            class="segmented-item glass-effect relative flex gap-[6px] items-center justify-center min-w-[32px] px-[12px] py-[4px] rounded-[10px] transition-all duration-300 overflow-hidden"
-            onclick="selectItem(this)"
-            data-selected="true">
-            <p class="font-medium text-[14px] text-[#202125] text-center leading-[1.4] whitespace-nowrap relative z-10">
-                Last week
-            </p>
-        </button>
-        
-        <!-- This week - Unselected -->
-        <button 
-            class="segmented-item relative flex gap-[6px] items-center justify-center min-w-[32px] px-[12px] py-[4px] rounded-[10px] transition-all duration-300 hover:bg-white/30"
-            onclick="selectItem(this)"
-            data-selected="false">
-            <p class="font-medium text-[14px] text-[#202125]/60 text-center leading-[1.4] whitespace-nowrap relative z-10">
-                This week
-            </p>
-        </button>
+<body class="min-h-screen flex items-center justify-center p-8 bg-gray-50 dark:bg-gray-900">
+    <!-- Mode Toggle Button -->
+    <button class="mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+        <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <!-- Sun icon (shown in dark mode) -->
+            <path class="hidden dark:block" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            <!-- Moon icon (shown in light mode) -->
+            <path class="block dark:hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+    </button>
+
+    <div class="flex flex-col items-center gap-8">
+        <!-- Title -->
+        <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 transition-colors duration-300">
+            iOS 26 Liquid Glass Segmented Control
+        </h1>
+
+        <!-- Segmented Control -->
+        <div class="border border-white/30 dark:border-white/10 border-solid flex gap-[2px] items-center justify-center p-[3px] rounded-[12px] bg-white/20 dark:bg-black/30 backdrop-blur-md inline-flex shadow-xl transition-all duration-300">
+            <!-- Last week - Selected -->
+            <button 
+                class="segmented-item glass-effect relative flex gap-[6px] items-center justify-center min-w-[32px] px-[12px] py-[4px] rounded-[10px] transition-all duration-300 overflow-hidden"
+                onclick="selectItem(this)"
+                data-selected="true">
+                <p class="font-medium text-[14px] text-[#202125] dark:text-gray-200 text-center leading-[1.4] whitespace-nowrap relative z-10 transition-colors duration-300">
+                    Last week
+                </p>
+            </button>
+            
+            <!-- This week - Unselected -->
+            <button 
+                class="segmented-item relative flex gap-[6px] items-center justify-center min-w-[32px] px-[12px] py-[4px] rounded-[10px] transition-all duration-300 hover:bg-white/30 dark:hover:bg-white/10"
+                onclick="selectItem(this)"
+                data-selected="false">
+                <p class="font-medium text-[14px] text-[#202125]/60 dark:text-gray-400 text-center leading-[1.4] whitespace-nowrap relative z-10 transition-colors duration-300">
+                    This week
+                </p>
+            </button>
+        </div>
+
+        <!-- Mode indicator -->
+        <p class="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">
+            <span class="hidden dark:inline">🌙 Dark Mode</span>
+            <span class="inline dark:hidden">☀️ Light Mode</span>
+        </p>
     </div>
 
     <!-- JavaScript for interaction -->
     <script>
         function selectItem(button) {
-            const container = button.closest('div');
+            const container = button.closest('div.border');
             const allButtons = container.querySelectorAll('.segmented-item');
+            const isDarkMode = document.documentElement.classList.contains('dark');
             
             allButtons.forEach(btn => {
                 btn.classList.remove('glass-effect', 'overflow-hidden');
                 btn.setAttribute('data-selected', 'false');
                 // Make text semi-transparent for unselected
                 const text = btn.querySelector('p');
-                text.classList.remove('text-[#202125]');
-                text.classList.add('text-[#202125]/60');
+                text.classList.remove('text-[#202125]', 'dark:text-gray-200');
+                text.classList.add('text-[#202125]/60', 'dark:text-gray-400');
             });
             
             button.classList.add('glass-effect', 'overflow-hidden');
             button.setAttribute('data-selected', 'true');
             // Make text fully opaque for selected
             const selectedText = button.querySelector('p');
-            selectedText.classList.remove('text-[#202125]/60');
-            selectedText.classList.add('text-[#202125]');
+            selectedText.classList.remove('text-[#202125]/60', 'dark:text-gray-400');
+            selectedText.classList.add('text-[#202125]', 'dark:text-gray-200');
         }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            // Save preference to localStorage
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('darkMode', isDark);
+        }
+
+        // Load dark mode preference on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedDarkMode = localStorage.getItem('darkMode');
+            if (savedDarkMode === 'true') {
+                document.documentElement.classList.add('dark');
+            }
+        });
     </script>
 </body>
 </html>
