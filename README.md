@@ -1,15 +1,24 @@
 # Figma Prototype
 
-A responsive HTML prototype built with Tailwind CSS.
+iOS 26 Liquid Glass Segmented Control built with HTML and Tailwind CSS.
 
 ## Features
 
-- ✅ Fully responsive design (mobile, tablet, desktop)
-- ✅ Modern UI with gradient hero section
-- ✅ Interactive cards with hover effects
-- ✅ Sticky navigation header
-- ✅ Mobile-friendly hamburger menu
+- ✅ iOS 26 Liquid Glass Effect on selected state
+- ✅ Frosted backdrop blur with 30px blur and 200% saturation
+- ✅ Smooth transitions and animations
+- ✅ Interactive toggle functionality
+- ✅ Fully responsive design
 - ✅ Built with Tailwind CSS via CDN (no build step required)
+
+## Design Details
+
+The segmented control features:
+- **Glass morphism effect** - Premium frosted glass appearance on active segments
+- **Layered shadows** - Multiple inset and outer shadows for depth
+- **Gradient overlays** - Subtle lighting effects
+- **High contrast** - Clear distinction between selected and unselected states
+- **Text opacity** - 100% opacity for selected, 60% for unselected segments
 
 ## How to Use
 
@@ -31,18 +40,11 @@ A responsive HTML prototype built with Tailwind CSS.
 
 You can customize the design by:
 
-1. **Colors**: Edit the `tailwind.config` in the `<head>` section
-2. **Content**: Replace the placeholder text with your actual content
-3. **Layout**: Modify the HTML structure and Tailwind classes
-4. **Icons**: Replace SVG icons or use an icon library
-
-## Responsive Breakpoints
-
-- Mobile: < 768px
-- Tablet: 768px - 1024px
-- Desktop: > 1024px
+1. **Colors**: Edit the glass effect styles in the `<style>` section
+2. **Blur intensity**: Adjust `backdrop-filter: blur()` values
+3. **Segments**: Add more button elements within the container
+4. **Animation**: Modify the `transition-all duration-300` classes
 
 ## Browser Support
 
-Works on all modern browsers that support CSS Grid and Flexbox.
-
+Works on all modern browsers that support backdrop-filter and CSS Grid/Flexbox.
